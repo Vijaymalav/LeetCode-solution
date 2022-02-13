@@ -105,14 +105,14 @@ class Solution
         q.push(root);
         while(!q.empty()){
             int n=q.size();
-             priority_queue<int>pq;
+           int mx=INT_MIN;
             while(n--){
                 Node* tmp=q.front();q.pop();
-                pq.push(tmp->data);
+               mx=max( mx,tmp->data);
                 if(tmp->left)q.push(tmp->left);
                 if(tmp->right)q.push(tmp->right);
             }
-            ans.push_back(pq.top());
+            ans.push_back(mx);
           
         }
         return ans;
