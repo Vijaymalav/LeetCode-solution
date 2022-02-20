@@ -5,18 +5,18 @@ public:
         return a[1]>b[1];
     }
     int removeCoveredIntervals(vector<vector<int>>& inter) {
-        stack<pair<int,int>>st;
+        pair<int,int>st={-1,-1};
         int cnt=0;
         int n=inter.size();
         sort(inter.begin(),inter.end(),comp);
         for(auto it:inter){
-            if(st.empty()){
-                st.push({it[0],it[1]});
+            if(st.first==-1 and st.second==-1){
+                st={it[0],it[1]};
                 continue;
             }
-            auto tp=st.top();
-            int f1=tp.first;
-            int s1=tp.second;
+           
+            int f1=st.first;
+            int s1=st.second;
             int f2=it[0];
             int s2=it[1];
             if(f2>=f1 and s1>=s2){
@@ -24,8 +24,8 @@ public:
              
             }
             else{
-                st.pop();
-                st.push({f2,s2});
+               
+                st={f2,s2};
             }
             
         }
