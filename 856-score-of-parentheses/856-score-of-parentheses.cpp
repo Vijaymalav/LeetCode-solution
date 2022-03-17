@@ -1,20 +1,23 @@
 class Solution {
 public:
-  
+  int i=0;
         int scoreOfParentheses(string s) {
-        stack<int> st;
-        int score = 0;
-        for(int i = 0; i < s.size(); i++){
-            if(s[i] == '('){
-                st.push(score);
-                score = 0;
+      int score=0;
+          
+            
+            while(i<s.size()){
+             char first=s[i];i++;
+            if(first=='('){
+                if(s[i]==')'){
+                    score=score+1;
+                    i++;
+                }
+                else{
+                    score=score+2*(scoreOfParentheses(s));
+                }
             }
-            else {
-                score = st.top() + max(2 * score, 1);
-                st.pop();
+            else return score;
             }
-        }
         return score;
-    
     }
 };
