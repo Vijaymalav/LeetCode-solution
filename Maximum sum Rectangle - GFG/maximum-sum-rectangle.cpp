@@ -9,28 +9,22 @@ using namespace std;
 
 class Solution {
   public:
-   int kadanes(vector<int> &v){
-       int max_so_far = v[0];
-       int curr_so_far = v[0];
-       for(int i = 1; i < v.size(); i++){
-           curr_so_far = max(v[i],curr_so_far+v[i]);
-           max_so_far = max(max_so_far,curr_so_far);
-       }
-       return (max_so_far);
-   }
-   
-   int maximumSumRectangle(int R, int C, vector<vector<int>> M) {
-       int mx = INT_MIN;
-       for(int i = 0; i < R; i++){
-           vector<int> v(C,0);
-           for(int i1 = i; i1 < R; i1++){
-               for(int j = 0; j < C; j++){
-                   v[j] += M[i1][j];
+  int maximumSumRectangle(int R, int C, vector<vector<int>> M) {
+     
+       int arr[C];
+       int max_so_far=INT_MIN;
+       for(int i=0;i<R;i++){
+           memset(arr,0,sizeof(arr));
+           for(int j=i;j<R;j++){
+               int sum=0;
+               for(int k=0;k<C;k++){
+                   arr[k]+=M[j][k];
+                   sum=max(sum+arr[k],arr[k]);
+                   max_so_far=max(sum,max_so_far);
                }
-               mx = max(mx,kadanes(v));
            }
        }
-       return (mx);
+       return max_so_far;
    }
 };
 
