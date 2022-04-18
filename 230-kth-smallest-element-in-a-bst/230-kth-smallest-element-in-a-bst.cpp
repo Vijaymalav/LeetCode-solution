@@ -11,16 +11,25 @@
  */
 class Solution {
 public:
-    void ino(TreeNode* root,int k,priority_queue<int>&pq){
-        if(!root)return ;
-        ino(root->left,k,pq);
-        pq.push(root->val);
-        if(pq.size()>k)pq.pop();
-        ino(root->right,k,pq);
+    // void ino(TreeNode* root,int k,priority_queue<int>&pq){
+    //     if(!root)return ;
+    //     ino(root->left,k,pq);
+    //     pq.push(root->val);
+    //     if(pq.size()>k)pq.pop();
+    //     ino(root->right,k,pq);
+    // }
+    // int kthSmallest(TreeNode* root, int k) {
+    //     priority_queue<int>pq;
+    //     ino(root,k,pq);
+    //     return pq.top();
+    // }
+    
+    
+    int kthSmallest(TreeNode* root, int& k) {
+    if (root) {
+        int x = kthSmallest(root->left, k);
+        return !k ? x : !--k ? root->val : kthSmallest(root->right, k);
     }
-    int kthSmallest(TreeNode* root, int k) {
-        priority_queue<int>pq;
-        ino(root,k,pq);
-        return pq.top();
+        return -1;
     }
 };
