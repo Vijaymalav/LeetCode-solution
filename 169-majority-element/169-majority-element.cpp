@@ -14,10 +14,6 @@ public:
             }
         }
      
-        // for(int i=0;i<nums.size();i++){
-        //     if(ele==nums[i])cnt++;
-        // }
-        // if(cnt>)
         return ele;
     }
 };
