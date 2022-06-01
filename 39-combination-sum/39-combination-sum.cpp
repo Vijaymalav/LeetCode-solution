@@ -1,29 +1,30 @@
 class Solution {
 public:
-    void f(int ind,vector<int>tmp,vector<vector<int>> &ans,int n,int sum,int tar,vector<int>&cand){
-        if(ind==n)return;
+    vector<vector<int>>ans;
+    void helper(vector<int>cand,int tar,vector<int>tmp,int i,int n,int sum){
+      
         if(sum==tar){
+            
             ans.push_back(tmp);
-            return ;
+            return;
         }
+        if(sum>tar)return;
+      
+         if(i==n)return ;
+            helper(cand,tar,tmp,i+1,n,sum);
+            
+         sum+=cand[i];
+           
+            tmp.push_back(cand[i]);
         
-        tmp.push_back(cand[ind]);
-        sum+=cand[ind];
-        if(sum<=tar){
-                f(ind,tmp,ans,n,sum,tar,cand);
-        }
-
+         helper(cand,tar,tmp,i,n,sum);
+        sum-=cand[i];
         tmp.pop_back();
-        sum-=cand[ind];
-      
-           f(ind+1,tmp,ans,n,sum,tar,cand);
-      
     }
-    vector<vector<int>> combinationSum(vector<int>& cand, int tar) {
-        vector<vector<int>> ans;
-        vector<int>tmp;
-        int n=cand.size();
-        f(0,tmp,ans,n,0,tar,cand);
+    vector<vector<int>> combinationSum(vector<int>& cand, int target) {
+        ans.clear();
+        helper(cand,target,{},0,cand.size(),0);
+       
         return ans;
     }
 };
