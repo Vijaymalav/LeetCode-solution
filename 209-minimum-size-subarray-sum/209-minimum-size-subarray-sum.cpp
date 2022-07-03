@@ -6,9 +6,9 @@ public:
         int n=nums.size();
         while(j<n){
             sum+=nums[j];
-            if(sum>=target){
-                ans=min(ans,(j-i+1));
-            }
+            // if(sum>=target){
+            //     ans=min(ans,(j-i+1));
+            // }
             while(sum>=target){
                 sum-=nums[i];
                 ans=min(ans,(j-i+1));
