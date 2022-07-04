@@ -1,20 +1,14 @@
 class Solution {
 public:
-    bool issub(string s,string t,int n,int m){
-       
-         if(m==0)return true;
-         if(n==0)return false;
-       if(s[m-1]==t[n-1]){
-           return issub(s,t,n-1,m-1);
-       }
-        return issub(s,t,n-1,m);
-    }
     bool isSubsequence(string s, string t) {
-
-        int n=t.size();
-        int m=s.size();
-     return issub(s,t,n,m);;
+        int i=0;
+        for(int j=0;j<s.size();j++){
+            while(s[j]!=t[i] and i<t.size())i++;
+            
+            if(s[j]!=t[i])return false;
+            i++;
+        }
+        return true;
         
-      
     }
 };
