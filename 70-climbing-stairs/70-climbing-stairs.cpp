@@ -1,24 +1,18 @@
 class Solution {
 public:
- 
+//     int helper(int n,vector<int>&vec){
+     
+//         if(vec[n]!=-1)return vec[n];
+//         return vec[n]= climbStairs(n-1)+climbStairs(n-2);
+//     }
     int climbStairs(int n) {
-        //  vector<int>dp(n+1,-1);
-        //  dp[0]=1;
-        // dp[1]=1;
-        int pre1=1;
-        int pre2=1;
-        int ans=1;
-         for(int i=2;i<=n;i++){
-             // dp[i]=dp[i-1]+dp[i-2];
-             ans=pre1+pre2;
-             pre2=pre1;
-             pre1=ans;
-         }
-        return ans;
-        // if(dp[n]!=-1)return dp[n];
-        // int left=climbStairs(n-1);
-        // int right=climbStairs(n-2);
-        // return dp[n]= left+right;
-       
+           if(n==1 || n==2)return n;
+        vector<int>vec(n+1);
+        vec[1]=1;
+        vec[2]=2;
+        for(int i=3;i<=n;i++){
+            vec[i]=vec[i-1]+vec[i-2];
+        }
+        return vec[n];
     }
 };
