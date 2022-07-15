@@ -7,7 +7,7 @@ public:
           int down=dfs(grid,i+1,j,row,col);
           int left=dfs(grid,i,j-1,row,col);
           int right=dfs(grid,i,j+1,row,col);
-        return up+down+left+right+1;
+        return left+up+down+right+1;
         
     }
     int maxAreaOfIsland(vector<vector<int>>& grid) {
