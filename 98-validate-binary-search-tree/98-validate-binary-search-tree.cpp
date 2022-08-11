@@ -11,19 +11,22 @@
  */
 class Solution {
 public:
-    bool f=true;
-     TreeNode* par=NULL;
-    void helper(TreeNode* root){
-        if(!root)return ;
-        helper(root->left);
-      
-        if(par!=NULL and root->val<=par->val){f=false;return;};
-         par=root;
-         helper(root->right);
+      bool f=true;
+    void helper(TreeNode* root,TreeNode* &par){
+        if(!root)return;
+        helper(root->left,par);
+        if(par and  par->val>=root->val){
+            f=false;
+            return;
+        }
+        par=root;
+        helper(root->right,par);
     }
+    
     bool isValidBST(TreeNode* root) {
-        if(!root)return true;
-        helper(root);
+      
+        TreeNode* par=NULL;
+        helper(root,par);
         return f;
     }
 };
