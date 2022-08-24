@@ -11,6 +11,7 @@
 class Solution {
 public:
     ListNode* swapPairs(ListNode* head) {
+        if(!head || !head->next)return head;
         ListNode* curr=head;
         while(curr and curr->next){
             swap(curr->val,curr->next->val);
